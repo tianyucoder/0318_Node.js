@@ -42,9 +42,9 @@
             3.npm i xxxx -g  全局安装xxxx包（一般来说，带有指令集的包要进行全局安装，例如：browserify、babel等）
               查看全局安装的位置：npm root -g
 
-            7.npm i xxx@yyy :安装xxx包的yyy版本
+            4.npm i xxx@yyy :安装xxx包的yyy版本
 
-            8.npm i ：安装package.json中所有声明的包
+            5.npm i ：安装package.json中所有声明的包
 
       三、【移除】：
             npm remove xxxxx  移除xxxx包，并且删除该包在package.json中的声明
