@@ -23,18 +23,17 @@ let buf = Buffer.from(str)
 console.log(buf)*/
 
 //2.创建一个Buffer实例-----即将被废弃（效率很低）
-/*
-let buf = new Buffer(10)
-console.log(buf)
-*/
+/*let buf = new Buffer(10)
+console.log(buf)*/
 
 //3.创建一个Buffer实例-----效率比上面的稍微高一些
 /*let buf = Buffer.alloc(10)
 console.log(buf)*/
 
 //4.创建一个Buffer实例-----效率最高，但是有一些安全性问题。
-let buf = Buffer.allocUnsafe(10)
-console.log(buf);
+/*let buf = Buffer.allocUnsafe(10)
+console.log(buf);*/
+
 
 
 
