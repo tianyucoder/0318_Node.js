@@ -16,6 +16,7 @@
 
 console.log(__filename)
 console.log(__dirname)
+console.log(this)
 //console.log(arguments.callee.toString())
 
 
