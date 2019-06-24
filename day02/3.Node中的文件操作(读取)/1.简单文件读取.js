@@ -17,10 +17,10 @@ readFile('./music.mp3',(err,data)=>{
   if(!err){
     //思考：为什么读取出来的东西是Buffer类型？
     //console.log(data.toString())
-    writeFile('../demo.wav',data,(err)=>{
+   /* writeFile('../demo.wav',data,(err)=>{
       if(!err) console.log('文件写入成功')
       else console.log(err)
-    })
+    })*/
 
   }else{
     console.log(err)
