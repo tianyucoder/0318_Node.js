@@ -35,14 +35,15 @@ app.get('/',(request,response)=>{
 
 app.get('/meishi',(request,response)=>{
   /*
-  哪些请求可以由该回调函数进行响应？
-      1.请求的方式为：GET（通过地址栏访问、通过form表单指明请求方式为：post）
+  哪些请求可以由该回调函数进行处理？
+      1.请求的方式为：GET（通过地址栏访问、通过form表单指明请求方式为：GET）
       2.请求地址是：
             1.http://localhost:3000/meishi
-            2.http://127.0.0.1:3000/meishi
+            2.http://127.0.0.1:3000/meishi    127.0.0.1--本地回环地址
             3.http://192.168.33.188:3000/meishi
   */
   //用户输入网址，请求页面的这种方式是GET请求
+  console.log(request.query)
   response.send('<h1>客官你好，我是美食界面，有很多好吃的</h1>')
 })
 
