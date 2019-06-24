@@ -30,7 +30,6 @@ let dbPromise = new Promise((resolve,reject)=>{
 ;(async()=>{
   await dbPromise
 
-
   //1.引入Schema ------  请了一个保安
   let Schema = mongoose.Schema;
 
@@ -69,21 +68,30 @@ let dbPromise = new Promise((resolve,reject)=>{
   let studentModel = mongoose.model('students',studentSchema)
 
   //4.数据的增删改查 ------ 真正有人要进入你家了，（模型对象上有操作数据库的所有方法）
-  studentModel.create({
-    stu_id:'20190624004',
-    name:'晓雯',
+
+
+
+  //增
+  let result = studentModel.create({
+    stu_id:'20190624005',
+    name:'班长',
     age:20,
     sex:'女',
-    hobby:['心理疏导','爱情','打代码'],
-    info:'一个非常热心的人'
-  },(err,data)=>{
-    if(!err){
-      console.log('数据写入成功了',data)
-    }else{
-      console.log(err)
-    }
+    hobby:['打台球','打篮球','踢足球'],
+    info:'一个非常成熟，技术好的人'
   })
+  console.log(await result)
 
+  //查
+  /*let result = studentModel.findOne({age:20},{name:1,sex:1,_id:0})
+  console.log(await result)*/
+
+  //改
+  /*let result = studentModel.update({age:20},{sex:'女'},{multi:true})
+  console.log(await result)*/
+
+  //删
+  /*await studentModel.deleteMany({sex:'女'})*/
 })()
 
 
