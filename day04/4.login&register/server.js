@@ -47,6 +47,7 @@ db
         if(findResult){
           //邮箱已经注册过
           reponse.send(`${email}邮箱已经注册过，不能重复注册`)
+          return
         }else{
           //邮箱没有注册过
           await usersModel.create({email,user_name,password})
