@@ -18,7 +18,7 @@ app.use(express.static('public'))
 db
   .then(()=>{
     //业务路由----注册
-    app.post('/register',async(request,reponse)=>{
+    app.post('/register',async(request,response)=>{
       //1.获取用户的输入
       let {email,user_name,password,re_password} = request.body //对象类型
       //2.校验数据格式 ----- 正则
@@ -27,16 +27,16 @@ db
       let passwordReg = /^[a-zA-Z0-9_#@!]{6,20}$/ //校验邮箱的正则
       //使用正则去校验
       if(!emailReg.test(email)){
-        reponse.send('邮箱输入不合法，应为用户名@主机名.com,用户名长度：5-16，主机名长度：2-8')
+        response.send('邮箱输入不合法，应为用户名@主机名.com,用户名长度：5-16，主机名长度：2-8')
         return
       }else if(!userName.test(user_name)){
-        reponse.send('姓名输入不合法，应为5-16的英文字母或数字')
+        response.send('姓名输入不合法，应为5-16的英文字母或数字')
         return
       }else if(!passwordReg.test(password)){
-        reponse.send('密码输入不合法，应为6-20的英文字母或数字或#@!')
+        response.send('密码输入不合法，应为6-20的英文字母或数字或#@!')
         return
       }else if(password !== re_password){
-        reponse.send('两次输入密码不一致')
+        response.send('两次输入密码不一致')
         return
       }
 
@@ -46,24 +46,24 @@ db
         let findResult = await usersModel.findOne({email})
         if(findResult){
           //邮箱已经注册过
-          reponse.send(`${email}邮箱已经注册过，不能重复注册`)
+          response.send(`${email}邮箱已经注册过，不能重复注册`)
           return
         }else{
           //邮箱没有注册过
           await usersModel.create({email,user_name,password})
-          reponse.send(`${email}邮箱注册成功！`)
+          response.send(`${email}邮箱注册成功！`)
           console.log(`邮箱为：${email}，姓名为：${user_name}的用户注册成功！${Date.now()}`)
         }
       }
       catch(err){
         //计数操作，一些安全性的操作写在此处
         console.log(err)
-        reponse.send('当前网络不稳定，请稍后重试！')
+        response.send('当前网络不稳定，请稍后重试！')
       }
     })
 
     //业务路由----登录
-    app.post('/login',async(request,reponse)=>{
+    app.post('/login',async(request,response)=>{
       //1.获取用户的输入
       let {email,password} = request.body //对象类型
       //2.校验数据格式 ----- 正则
@@ -71,10 +71,10 @@ db
       let passwordReg = /^[a-zA-Z0-9]{5,16}$/ //校验密码的正则
       //3.使用正则去校验
       if(!emailReg.test(email)){
-        reponse.send('邮箱输入不合法，应为用户名@主机名.com,用户名长度：5-16，主机名长度：2-8')
+        response.send('邮箱输入不合法，应为用户名@主机名.com,用户名长度：5-16，主机名长度：2-8')
         return
       }else if(!passwordReg.test(password)){
-        reponse.send('密码输入不合法，应为6-20的英文字母或数字或#@!')
+        response.send('密码输入不合法，应为6-20的英文字母或数字或#@!')
         return
       }
       //去数据库中查找
@@ -83,11 +83,11 @@ db
         if(findResult){
           //登录成功了
           console.log(`邮箱为${email}的用户登录成功`)
-          reponse.redirect('https://www.baidu.com')
+          response.redirect('https://www.baidu.com')
         }else{
           //登录失败------真实项目中在这里会做一些安全性处理
           console.log(`邮箱为${email}的用户登录失败`)
-          reponse.send('登录失败，邮箱或密码不正确！')
+          response.send('登录失败，邮箱或密码不正确！')
         }
       }
       catch(err){
@@ -99,13 +99,13 @@ db
     })
 
     //UI路由---注册页面
-    app.get('/register',(request,reponse)=>{
-      reponse.sendFile(__dirname+'/public/register.html')
+    app.get('/register',(request,response)=>{
+      response.sendFile(__dirname+'/public/register.html')
     })
 
     //UI路由---登录页面
-    app.get('/login',(request,reponse)=>{
-      reponse.sendFile(__dirname+'/public/login.html')
+    app.get('/login',(request,response)=>{
+      response.sendFile(__dirname+'/public/login.html')
     })
   })
   .catch((err)=>{
