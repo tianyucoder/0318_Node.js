@@ -47,7 +47,7 @@ app.get('/meishi',(request,response)=>{
   response.send('<h1>客官你好，我是美食界面，有很多好吃的</h1>')
 })
 
-app.get('/demo',(req,res)=>{
+app.post('/demo',(req,res)=>{
   //post请求过来的参数，不可以通过req.query获取，要通过一个新的属性，而且需要借助一个中间件完成。
   //console.log(req.query);
   res.send('ok')
