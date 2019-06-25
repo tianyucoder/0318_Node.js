@@ -17,12 +17,10 @@ app.use(express.static('public'))
 //连接数据库
 db
   .then(()=>{
-    //用户注册的路由-----业务路由----注册
+    //业务路由----注册
     app.post('/register',async(request,reponse)=>{
-
       //1.获取用户的输入
       let {email,user_name,password,re_password} = request.body //对象类型
-
       //2.校验数据格式 ----- 正则
       let emailReg = /^[a-zA-Z0-9_]{5,16}@[a-zA-Z0-9]{2,8}\.com$/ //校验邮箱的正则
       let userName = /^[a-zA-Z0-9]{5,16}$/ //校验姓名的正则
@@ -63,7 +61,7 @@ db
       }
     })
 
-    //用户登录的路由-----业务路由----登录
+    //业务路由----登录
     app.post('/login',async(request,reponse)=>{
       //1.获取用户的输入
       let {email,password} = request.body //对象类型
@@ -103,15 +101,16 @@ db
     app.get('/register',(request,reponse)=>{
       reponse.sendFile(__dirname+'/public/register.html')
     })
+
     //UI路由---登录页面
     app.get('/login',(request,reponse)=>{
       reponse.sendFile(__dirname+'/public/login.html')
     })
   })
   .catch((err)=>{
+    //若进入此处表示连接数据库时出错
     console.log(err)
   })
-
 
 //绑定端口监听
 app.listen(PORT,(err)=>{
