@@ -36,36 +36,36 @@ let app = express()
 app.use(cookieParser())
 
 //test路由：1.给客户端种下一个cookie
-app.get('/test',(req,res)=>{
+app.get('/test',(request,response)=>{
   //在express中，设置cookie无需任何内置库和第三方库，直接就可以完成
 
   //1.给客户端种下一个会话cookie
   //res.cookie('demo',123)
 
   //2.给客户端种下一个持久化cookie
-  res.cookie('demo',123,{maxAge:1000*300})
+  response.cookie('demo',123,{maxAge:1000*300})
 
-  res.send('ok')
+  response.send('ok')
 })
 
-app.get('/test2',(req,res)=>{
+app.get('/test2',(request,response)=>{
   //在express中，如果想获取cookie，需要用到一个第三发的库：cookie-parser
   //获取客户端携带过来的cookie
-  console.log(req.cookies);
-  res.send('ok')
+  console.log(request.cookies);
+  response.send('ok')
 })
 
 
-app.get('/test3',(req,res)=>{
+app.get('/test3',(request,response)=>{
   //告诉客户端删除一个cookie
 
   //删除方法一   立即过期
   //res.cookie('demo',123,{maxAge:0})
 
   //删除方法一   调用删除的API
-  res.clearCookie('demo')
+  response.clearCookie('demo')
 
-  res.send('ok')
+  response.send('ok')
 })
 
 app.listen(3000,(err)=>{
