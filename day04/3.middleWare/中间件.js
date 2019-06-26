@@ -62,7 +62,7 @@ app.post('/test3',(request,response)=>{
 })
 
 //一级路由
-app.get('/test2',myMiddleWare,(request,response)=>{
+app.get('/test2',myMiddleWare,myMiddleWare2,(request,response)=>{
   response.send('我是test2路由')
 })
 
