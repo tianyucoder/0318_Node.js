@@ -22,3 +22,53 @@
 *      5.不同的语言、不同的后端架构cookie的具体语法是不一样的，但是cookie原理和工作过程是不变的。
 *         备注：cookie不一定只由服务器生成，前端同样可以生成cookie，但是前端生成的cookie几乎没有意义。
 * */
+
+/*
+* 1.如何“种”下一个cookie（服务器生成一个cookie，交给浏览器进行保存）
+* 2.去获取客户端携带过来的cookie
+* 3.删除一个cookie
+* */
+
+let express = require('express')
+let cookieParser = require('cookie-parser')
+
+let app = express()
+app.use(cookieParser())
+
+//test路由：1.给客户端种下一个cookie
+app.get('/test',(req,res)=>{
+  //在express中，设置cookie无需任何内置库和第三方库，直接就可以完成
+
+  //1.给客户端种下一个会话cookie
+  //res.cookie('demo',123)
+
+  //2.给客户端种下一个持久化cookie
+  res.cookie('demo',123,{maxAge:1000*300})
+
+  res.send('ok')
+})
+
+app.get('/test2',(req,res)=>{
+  //在express中，如果想获取cookie，需要用到一个第三发的库：cookie-parser
+  //获取客户端携带过来的cookie
+  console.log(req.cookies);
+  res.send('ok')
+})
+
+
+app.get('/test3',(req,res)=>{
+  //告诉客户端删除一个cookie
+
+  //删除方法一   立即过期
+  //res.cookie('demo',123,{maxAge:0})
+
+  //删除方法一   调用删除的API
+  res.clearCookie('demo')
+
+  res.send('ok')
+})
+
+app.listen(3000,(err)=>{
+  if(!err) console.log('ok')
+  else console.log(err)
+})
