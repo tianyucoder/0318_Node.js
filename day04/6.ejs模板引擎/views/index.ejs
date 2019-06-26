@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--
+        < %  % >  --------可以写任意的js代码，但是不会向页面输出任何内容
+        < %- % > ---------渲染内容到页面
+        < %= % > ---------渲染内容到页面
+-->
+
+<h1>hello</h1>
+
+<ul>
+
+    <%for (var i=0; i<person.length; i++ ){%>
+        <li><%-person[i].name%></li>
+        <li><%-person[i].age%></li>
+        <br>
+    <%}%>
+
+    <%console.log(1)%>
+
+</ul>
+
+</body>
+</html>
