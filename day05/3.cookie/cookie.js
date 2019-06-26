@@ -17,19 +17,8 @@
 *           --服务器拿到之前自己“种”下cookie，分析里面的内容，校验cookie的合法性，根据cookie里保存的内容，进行具体的业务逻辑。
 *
 *      4.应用：
-*           解决http无状态的问题（例子：7天免登录，一般来说不会单独使用cookie，一般配合session使用）
+*           解决http无状态的问题（例子：7天免登录，一般来说不会单独使用cookie，一般配合后台的session存储使用）
 *
 *      5.不同的语言、不同的后端架构cookie的具体语法是不一样的，但是cookie原理和工作过程是不变的。
 *         备注：cookie不一定只由服务器生成，前端同样可以生成cookie，但是前端生成的cookie几乎没有意义。
 * */
-const express = require('express');
-const app = express()
-
-app.get('/test',(request,response)=>{
-  response.send('ok')
-})
-
-app.listen(3000,(err)=>{
-  if(!err) console.log('ok')
-  else console.log(err)
-})

@@ -90,7 +90,10 @@ router.post('/login',async(request,response)=>{
     if(findResult){
       //登录成功了
       console.log(`邮箱为${email}的用户登录成功`)
-      response.redirect('https://www.baidu.com')
+      //response.redirect('https://www.baidu.com')
+      let userName = findResult.user_name
+      //response.render('userCenter',{userName})
+      response.redirect(`/userCenter?userName=${userName}`)
     }else{
       //登录失败------真实项目中在这里会做一些安全性处理
       console.log(`邮箱为${email}的用户登录失败`)

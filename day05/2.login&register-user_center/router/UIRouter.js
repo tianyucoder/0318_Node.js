@@ -19,4 +19,10 @@ router.get('/login',(request,response)=>{
   response.render('login',{errMsg:{email}})
 })
 
+//UI路由---个人中心页面
+router.get('/userCenter',(request,response)=>{
+  let {userName} = request.query
+  response.render('userCenter',{userName})
+})
+
 module.exports = router
