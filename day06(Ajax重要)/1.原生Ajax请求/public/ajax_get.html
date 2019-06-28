@@ -35,38 +35,45 @@
       * */
       
       //几乎不会0、1、2、3这几个状态中做任何逻辑处理。
-        /*if(xhr.readyState === 0){
-          console.log('状态为0')
-        }*/
-        /*if(xhr.readyState === 1){
-          xhr.setRequestHeader('demo',123)
-          console.log('状态为1')
-        }*/
-        /*if(xhr.readyState === 2){
-          //xhr.setRequestHeader('demo',123)
-          console.log(xhr.getResponseHeader('Date'));
-          console.log('状态为2')
-        }*/
-        /*if(xhr.readyState === 3){
-          console.log('状态为3')
-          console.log(xhr.response)
-        }*/
+      /*if(xhr.readyState === 0){
+        console.log('状态为0')
+      }*/
+      /*if(xhr.readyState === 1){
+        xhr.setRequestHeader('demo',123)
+        console.log('状态为1')
+      }*/
+      /*if(xhr.readyState === 2){
+        //xhr.setRequestHeader('demo',123)
+        console.log(xhr.getResponseHeader('Date'));
+        console.log('状态为2')
+      }*/
+      /*if(xhr.readyState === 3){
+        console.log('状态为3')
+        console.log(xhr.response)
+      }*/
         
-        if(xhr.readyState === 4 && xhr.status === 200){
-          console.log('状态为4')
-          let demo = document.getElementById('demo')
-          demo.innerHTML = xhr.response
-          console.log(xhr.response)
-        }
+      if(xhr.readyState === 4 && xhr.status === 200){
+        console.log('状态为4')
+        let demo = document.getElementById('demo')
+        demo.innerHTML = xhr.response
+        console.log(xhr.response)
+      }
     }
 
     //3.指定发送请求的：方式、地址、携带的参数
-    xhr.open('GET','http://localhost:3000/testGET?name=kobe&age=18')
+    xhr.open('GET','http://localhost:3000/testGET?name=kobe&age=18&t='+Date.now())
 
     //4.发送请求
     xhr.send()
     
   })
+  /*
+  * 对于IE浏览器来说：
+  *     如果GET请求的路径不发生变化，就走强缓存。
+  * 对于Chrome和Firefox
+  *     如果GET请求的路径不发生变化，就走协商缓存。
+  *
+  * */
 </script>
 </body>
 
