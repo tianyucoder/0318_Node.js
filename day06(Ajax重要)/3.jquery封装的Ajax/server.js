@@ -1,8 +1,12 @@
+//引入express框架
 let express = require('express')
-
+//创建app应用对象
 let app = express()
+//暴露静态资源
 app.use(express.static('public'))
+//引入服务器内部具体实现
 app.disable('x-powered-by')
+//用于解析post请求的请求体参数
 app.use(express.urlencoded({extended:true}))
 
 app.get('/testGET',(request,response)=>{
