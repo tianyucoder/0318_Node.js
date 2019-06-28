@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>cors解决跨域</title>
+</head>
+<body>
+<button id="btn">点我发送请求</button>
+<script>
+
+  let btn = document.getElementById('btn')
+
+  btn.addEventListener('click',function () {
+    //1.实例化一个XMLHttpRequest对象
+    let xhr = new XMLHttpRequest()
+
+    //2.给上一步实例化出来的对象绑定一个事件监听，事件名：onreadystatechange
+    xhr.onreadystatechange = function () {
+      if(xhr.readyState === 4 && xhr.status === 200){
+        console.log(xhr.response)
+      }
+    }
+
+    //3.指定发送请求的：方式、地址、携带的参数
+    xhr.open('GET','http://localhost:3000/testGET?name=kobe&age=18&t='+Date.now())
+
+    //4.发送请求
+    xhr.send()
+
+  })
+</script>
+</body>
+</html>

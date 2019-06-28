@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>jsonp解决跨域</title>
+</head>
+<body>
+<button id="btn">点我获取数据</button>
+
+<script type="text/javascript">
+  /*
+   * jsonp解决跨域：
+   *     1.原理：利用了标签请求资源“天然跨域”（或者说不受同源策略限制）的特点。
+   *     2.套路：
+   *           --定义好一个操作数据的函数。
+   *           --利用<script>标签向后台发送GET请求，发送的同时传递上一步定义的操作数据的函数名。
+   *           --后端人员返回指定格式的字符串（符合js函数调用语法规范）并注入数据。
+   *           --浏览器接收到数据后自动按js语法解析并执行，触发第一步定义的函数。
+   *     3.不足之处：1.需要后端人员配合，2.只能解决GET请求的跨域问题。
+   *
+   * */
+  
+  let btn = document.getElementById('btn')
+  
+  btn.addEventListener('click',function () {
+    let scriptNode = document.createElement('script')
+    scriptNode.src = 'http://localhost:3000/testGET?callback=getData'
+    window.getData = function(a) {
+      console.log(a)
+    }
+    document.body.appendChild(scriptNode)
+  })
+  
+  
+</script>
+</body>
+</html>
