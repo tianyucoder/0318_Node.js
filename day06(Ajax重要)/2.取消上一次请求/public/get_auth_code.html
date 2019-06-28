@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>取消上一次请求</title>
+</head>
+<body>
+<h1>该页面是测试：原生js取消上一次请求请求</h1>
+<button id="btn">点我获取验证码</button>
+<div id="demo"></div>
+
+<script>
+  
+  let btn = document.getElementById('btn')
+  let lastXhr
+  btn.addEventListener('click',function () {
+    if(lastXhr){
+      lastXhr.abort()
+    }
+    lastXhr = getAuthCode('GET','http://localhost:3000/getAuthCode')
+  })
+  
+  //获取验证码的方法
+  function getAuthCode(method,url) {
+    //1.实例化一个XMLHttpRequest对象
+    let xhr = new XMLHttpRequest()
+
+    //2.给上一步实例化出来的对象绑定一个事件监听，事件名：onreadystatechange
+    xhr.onreadystatechange = function () {
+      if(xhr.readyState === 4 && xhr.status === 200){
+        console.log(xhr.response)
+      }
+    }
+
+    //3.指定发送请求的：方式、地址、携带的参数
+    xhr.open(method,url)
+
+    //4.发送请求
+    xhr.send()
+    return xhr
+  }
+</script>
+</body>
+
+</html>
