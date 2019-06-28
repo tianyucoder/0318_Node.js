@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>使用jQuery发送Ajax请求</title>
+</head>
+<body>
+<h1>该页面是测试：jQuery发送Ajax请求</h1>
+
+<button id="btn1">点我使用jQuery发送Ajax-GET请求</button>
+<button id="btn2">点我使用jQuery发送Ajax-POST请求</button>
+
+<script type="text/javascript" src="./js/jquery-1.12.4.js"></script>
+<script>
+  
+  /*
+  * 使用jQuery发送ajax请求的几个常用参数：
+  *     method:发送请求的方式
+  *     data：携带的数据
+  *     success:成功的回调
+  *     error:失败的回调
+  * */
+  
+  
+  $('#btn1').click(function () {
+    //1.标准写法
+   /* $.ajax('http://localhost:3000/testGET',{
+      method:'GET',
+      data:{
+        name:'kobe',
+        age:18
+      },
+      success:function (data) {
+        console.log(data)
+      },
+      error:function (err) {
+        console.log(err)
+      }
+    })*/
+    
+    //2.精简写法
+    $.get('http://localhost:3000/testGET',{data:{name:'kobe',age:18}},(data,err)=>{
+      console.log(data,err)
+    })
+  })
+  
+  //发送POST请求
+  $('#btn2').click(function () {
+    //1.标准写法
+    /*$.ajax('http://localhost:3000/testPOST',{
+      method:'POST',
+      data:{
+        name:'kobe',
+        age:18
+      },
+      success:function (data) {
+        console.log(data)
+      },
+      error:function (err) {
+        console.log(err)
+      }
+    })*/
+
+    //2.精简写法
+    $.post('http://localhost:3000/testPOST',{data:{name:'kobe',age:18}},(data,err)=>{
+      console.log(data,err)
+    })
+  })
+  
+  
+  
+</script>
+</body>
+
+</html>

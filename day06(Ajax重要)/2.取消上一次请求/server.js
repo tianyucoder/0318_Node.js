@@ -14,7 +14,6 @@ app.get('/getAuthCode',(request,response)=>{
   },2000)
 })
 
-
 app.listen(3000,(err)=>{
   if(!err) {
     console.log('测试原生js发送Ajax-GET请求的地址是：http://localhost:3000/get_auth_code.html')
