@@ -25,21 +25,49 @@
 
     //2.给上一步实例化出来的对象绑定一个事件监听，事件名：onreadystatechange
     xhr.onreadystatechange = function () {
+      /*
+      * 在xhr对象内部有5中状态：
+      *     0:当xhr被实例化出来的那一刻就0状态，也叫初始化状态。
+      *     1:请求还没有被发出去，即：send方法还没有调用，此时可以修改请求头。
+      *     2:请求已经发出去了，即：send方法已经被调用了，不能再修改请求头内容，响应首行、响应头已经回来了。
+      *     3:数据回来了（数据可能不完整，如果是较小的数据，会在此阶段一次性接收完毕，如果数据大，有待于进一步接收）
+      *     4:数据完整的回来了。
+      * */
+      
+      //几乎不会0、1、2、3这几个状态中做任何逻辑处理。
+        /*if(xhr.readyState === 0){
+          console.log('状态为0')
+        }*/
+        /*if(xhr.readyState === 1){
+          xhr.setRequestHeader('demo',123)
+          console.log('状态为1')
+        }*/
+        /*if(xhr.readyState === 2){
+          //xhr.setRequestHeader('demo',123)
+          console.log(xhr.getResponseHeader('Date'));
+          console.log('状态为2')
+        }*/
+        /*if(xhr.readyState === 3){
+          console.log('状态为3')
+          console.log(xhr.response)
+        }*/
+        
         if(xhr.readyState === 4 && xhr.status === 200){
+          console.log('状态为4')
           let demo = document.getElementById('demo')
-          demo.innerHTML =
+          demo.innerHTML = xhr.response
           console.log(xhr.response)
         }
     }
 
     //3.指定发送请求的：方式、地址、携带的参数
-    xhr.open('GET','http://localhost:3000/testGET')
+    xhr.open('GET','http://localhost:3000/testGET?name=kobe&age=18')
 
     //4.发送请求
     xhr.send()
+    
   })
 </script>
-
-
 </body>
+
 </html>

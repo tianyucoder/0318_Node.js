@@ -2,10 +2,11 @@ let express = require('express')
 
 let app = express()
 app.use(express.static('public'))
-
+app.disable('x-powered-by')
 app.get('/testGET',(request,response)=>{
+  console.log(request.query);
   console.log('testGET路由被调用了')
-  response.send('我是服务返回的GET请求的信息')
+  response.send('我是服务器返回的GET请求的信息')
 })
 
 app.listen(3000,(err)=>{
