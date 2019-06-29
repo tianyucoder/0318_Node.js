@@ -33,7 +33,7 @@
 
 
   //jquery中使用jsonp方式跨域
-  $.ajax('http://localhost:3000/test1',{
+  $.ajax('http://localhost:3000/testGET',{
     method:'GET',
     dataType:'jsonp',
     success:function (data) {
@@ -45,7 +45,7 @@
   })
   
   //jquery中使用jsonp方式跨域(简写)
-  $.getJSON('http://localhost:3000/test1?callback=?',function (data) {
+  $.getJSON('http://localhost:3000/testGET?callback=?',function (data) {
     console.log(data)
   })
   
