@@ -8,6 +8,7 @@ app.disable('x-powered-by')
 app.use(express.urlencoded({extended:true}))
 
 app.get('/testGET',(request,response)=>{
+  console.log(request.query);
   //从请求的url中获取callback属性对应的值（采用了解构赋值的方式）
   let {callback} = request.query
   //模拟一个人的数组

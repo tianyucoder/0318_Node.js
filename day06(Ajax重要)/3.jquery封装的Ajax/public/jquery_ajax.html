@@ -24,7 +24,10 @@
   
   $('#btn1').click(function () {
     //1.标准写法
-   /* $.ajax('http://localhost:3000/testGET',{
+    /*
+    * 对于标准写法，传递数据是key必须叫做data
+    * */
+    let xhr = $.ajax('http://localhost:3000/testGET',{
       method:'GET',
       data:{
         name:'kobe',
@@ -36,10 +39,11 @@
       error:function (err) {
         console.log(err)
       }
-    })*/
+    })
+    //xhr.abort()
     
     //2.精简写法
-    $.get('http://localhost:3000/testGET',{data:{name:'kobe',age:18}},(data,err)=>{
+    $.get('http://localhost:3000/testGET',{name:'kobe',age:18},(data,err)=>{
       console.log(data,err)
     })
   })
@@ -62,7 +66,7 @@
     })*/
 
     //2.精简写法
-    $.post('http://localhost:3000/testPOST',{data:{name:'kobe',age:18}},(data,err)=>{
+    $.post('http://localhost:3000/testPOST',{name:'kobe',age:18},(data,err)=>{
       console.log(data,err)
     })
   })
