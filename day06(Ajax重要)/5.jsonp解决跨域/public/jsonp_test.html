@@ -30,7 +30,24 @@
     }
     document.body.appendChild(scriptNode)
   })
+
+
+  //jquery中使用jsonp方式跨域
+  $.ajax('http://localhost:3000/test1',{
+    method:'GET',
+    dataType:'jsonp',
+    success:function (data) {
+      console.log(data)
+    },
+    error:function (err) {
+      console.log(err)
+    }
+  })
   
+  //jquery中使用jsonp方式跨域(简写)
+  $.getJSON('http://localhost:3000/test1?callback=?',function (data) {
+    console.log(data)
+  })
   
 </script>
 </body>
