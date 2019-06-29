@@ -43,7 +43,57 @@
     })
     
     //获取某省下的所有市信息
-    $province.
+    $province.change(function () {
+      //清空城市选择框
+      $city.html('<option value="">请选择市</option>')
+      $county.html('<option value="">请选择区/县</option>')
+      //获取到当前选择的省份编码
+      let province = this.value
+      if(!province){
+        return
+      }
+      //获取该省份下的所有市信息
+      $.get('http://localhost:3000/getCitiesByProvince',{province},(result)=>{
+        let {state,data} = result
+        let html = ''
+        if(state === 1){
+          data.forEach((item)=>{
+            html += `<option value="${item.city}">${item.name}</option>`
+          })
+          $city.append(html)
+        }else{
+          alert(result.err)
+        }
+      })
+    })
+    
+    //获取某省、某市下的所有区县信息
+    $city.change(function () {
+      $county.html('<option value="">请选择区/县</option>')
+      //获取当前已经选择的省份编码、市的编码
+      let province = $province.val()
+      let city = this.value
+      if(!province || !city){
+        return
+      }
+      //发送请求获取所有区县信息
+      $.get('http://localhost:3000/getCountiesByProvinceAndCity',{province,city},(result)=>{
+        let {state,data} = result
+        let html = ''
+        if(state === 1){
+          data.forEach((item)=>{
+            html += `<option value="${item.code}">${item.name}</option>`
+          })
+          $county.append(html)
+        }else{
+          alert(result.err)
+        }
+      })
+    })
+
+    $county.change(function () {
+      alert(this.value)
+    })
     
   })
   

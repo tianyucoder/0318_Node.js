@@ -43,7 +43,7 @@ let app = express()
     response.set('Access-Control-Allow-Origin','*')
     //数据库中查找
     let {province,city} = request.query
-    cityModel.find({level:3,province,city},{name:1,county:1,_id:0},(err,data)=>{
+    cityModel.find({level:3,province,city},{name:1,code:1,_id:0},(err,data)=>{
       if(!err){
         response.json({state:1,data})
       }else{
